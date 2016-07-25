@@ -185,7 +185,6 @@ module.exports = {
     'react/no-deprecated': WARNING,
     'react/no-direct-mutation-state': WARNING,
     'react/no-is-mounted': WARNING,
-    'react/react-in-jsx-scope': WARNING,
     'react/require-render-return': WARNING
   }
 };

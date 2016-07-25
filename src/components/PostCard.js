@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card, CardTitle, CardText, CardActions, CardMenu, Button, IconButton } from 'react-mdl'
 
 export default () => (

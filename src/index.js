@@ -1,7 +1,6 @@
 require('script!../node_modules/react-mdl/extra/material.min.js')
 require('style!css!../node_modules/react-mdl/extra/css/material.amber-green.min.css')
 
-import React from 'react';
 import { render } from 'react-dom';
 import App from './components/App';
 import './css/index.css';
