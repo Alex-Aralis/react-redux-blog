@@ -1,4 +1,4 @@
-import { ADD_POST, TOGGLE_FAV } from '../actions/actionTypes'
+import { ADD_POST, TOGGLE_FAVORITE } from '../actions/actionTypes'
 
 let id = 0;
 
@@ -8,12 +8,11 @@ export default (posts = [], action) => {
       return [
         ...posts,
         {
+          ...action.post,
           id: id++,
-          title: action.title,
-          body: action.body,
         },
       ]
-    case TOGGLE_FAV:
+    case TOGGLE_FAVORITE:
       return posts.map(post => {
         if (post.id === action.id)
           return {...post, favorited: !post.favorited}
