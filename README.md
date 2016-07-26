@@ -31,7 +31,7 @@ npm start
 
 # Production
 
-After an `npm install` `dist/` can be built with
+After an `npm install` `build/` can be built with
 
 ```shell
 npm run build
