@@ -1,6 +1,6 @@
 import { Grid } from 'react-mdl'
 import { Component } from 'react'
-import PostForm from './PostForm'
+import PostForm from '../containers/PostForm'
 import BlogFooter from './BlogFooter'
 import VisiblePostCards from '../containers/VisiblePostCards'
 
