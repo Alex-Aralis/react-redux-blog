@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import App from './components/App';
 import './css/index.css';
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { addPost, toggleFavorite } from './actions/actionCreators'
 
@@ -13,7 +14,7 @@ let store = createStore(reducer)
 // eslint-disable-next-line
 let unsubOne = store.subscribe(() => console.log(store.getState()))
 store.dispatch(addPost('title', 'body'))
-store.dispatch(addPost('title', 'body'))
+store.dispatch(addPost('tsdflkjdsflksd', 'body'))
 store.dispatch(addPost('title', 'body'))
 store.dispatch(addPost('title', 'body'))
 
@@ -24,9 +25,9 @@ store.dispatch(toggleFavorite(3));
 
 store.dispatch(toggleFavorite(3));
 
-
-
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
