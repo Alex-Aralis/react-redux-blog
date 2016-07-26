@@ -1,8 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import { Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
-import Main from './Main'
 
-export default () => (
+export default class BlogHeader extends Component {
+
+  render(){
+    return (
     <div className="demo-big-content">
     <Layout>
     <Header waterfall>
@@ -23,21 +25,23 @@ export default () => (
     <a href="">Link</a>
     </Navigation>
     </HeaderRow>
-</Header>
-<Drawer title="Title">
-<Navigation>
-<a href="">Link</a>
-<a href="">Link</a>
-<a href="">Link</a>
-<a href="">Link</a>
-</Navigation>
-</Drawer>
-<Content>
-  <Main />
-</Content>
-</Layout>
-</div>
-)
+    </Header>
+    <Drawer title="Title">
+    <Navigation>
+    <a href="">Link</a>
+    <a href="">Link</a>
+    <a href="">Link</a>
+    <a href="">Link</a>
+    </Navigation>
+    </Drawer>
+    <Content>
+      {this.props.children}
+    </Content>
+    </Layout>
+    </div>
+    )
+  }
+}
 /*
 export default () => (
 <div className="demo-big-content">

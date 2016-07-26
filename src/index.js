@@ -8,6 +8,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { addPost, toggleFavorite } from './actions/actionCreators'
+import { Router, Route, hashHistory } from 'react-router'
+import Main from './components/Main'
+import Header from './components/Header'
 
 let store = createStore(reducer)
 
@@ -27,7 +30,11 @@ store.dispatch(toggleFavorite(3));
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={hashHistory}>
+      <Route path="/" component={Header}>
+        <Route path="/home" component={Main} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
