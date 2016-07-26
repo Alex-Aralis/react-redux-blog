@@ -6,6 +6,7 @@ This SPA is a project that will hopefully develop into my own Blog/Personal webs
 
 - [react](https://facebook.github.io/react/)
 - [redux](https://github.com/reactjs/redux)
+- [react-router](https://github.com/reactjs/react-router)
 - Ejected from [create-react-app](https://facebook.github.io/react/blog/2016/07/22/create-apps-with-no-configuration.html)
 - [material-design-lite](https://getmdl.io/)
 
