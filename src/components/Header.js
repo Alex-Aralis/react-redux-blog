@@ -1,22 +1,24 @@
 import { Component } from 'react'
-import { Grid, Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
+import { Grid, Cell, Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
 import SpanLink from './SpanLink'
 import { Link } from 'react-router'
 import LiveSearchbox from '../containers/LiveSearchbox'
+import BlogFooter from './BlogFooter'
 
 export default class BlogHeader extends Component {
 
   render(){
     return (
+    <div>
     <div className="demo-big-content">
     <Layout>
     <Header waterfall>
-    <HeaderRow title={<SpanLink to="/home"/>}>
+    <HeaderRow title={<SpanLink to="/posts"/>}>
     <LiveSearchbox />
     </HeaderRow>
     <HeaderRow>
     <Navigation>
-    <Link to="/home">Posts</Link>
+    <Link to="/posts">Posts</Link>
     <Link to="/new">New</Link>
     <Link to="/about">About</Link>
     </Navigation>
@@ -32,10 +34,14 @@ export default class BlogHeader extends Component {
     </Drawer>
     <Content>
       <Grid>
+        <Cell col={12}>
         {this.props.children}
+        </Cell>
       </Grid>
+    <BlogFooter />
     </Content>
     </Layout>
+    </div>
     </div>
     )
   }

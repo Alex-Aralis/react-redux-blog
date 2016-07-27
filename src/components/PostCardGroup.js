@@ -5,7 +5,7 @@ import { Grid } from 'react-mdl'
 const PostCardGroup = ({posts, onPostClick}) => (
   <Grid>
     {posts.map((post) => (
-      <PostCard key={post.id} {...post} onClick={() => onPostClick(post.id)} />
+      <PostCard key={post.id} post={post} onClick={() => onPostClick(post.id)} />
     ))} 
   </Grid>
 )

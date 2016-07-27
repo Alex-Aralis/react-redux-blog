@@ -11,6 +11,7 @@ import { Router, Route, hashHistory } from 'react-router'
 import Main from './components/Main'
 import Header from './components/Header'
 import PostForm from './containers/PostForm'
+import PostPage from './components/PostPage'
 
 let store = createStore(reducer)
 
@@ -32,8 +33,9 @@ render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={Header}>
-        <Route path="/home" component={Main} />
+        <Route path="/posts" component={Main} />
         <Route path="/new" component={PostForm} />
+        <Route path="/posts/:post" component={PostPage} />
       </Route>
     </Router>
   </Provider>,
