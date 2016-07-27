@@ -7,9 +7,15 @@ class RouterButton extends Component {
     this.props.router.push(this.props.to)
   }
 
+  cleanProps(props) {
+    props = {...props};
+    delete props.router;
+
+    return props;
+  }
   render() {
     return (
-      <Button onClick={ this.buttonClick.bind(this) } {...this.props}>
+      <Button onClick={ this.buttonClick.bind(this) } {...this.cleanProps(this.props)}>
         { this.props.children }
       </Button>
     )
