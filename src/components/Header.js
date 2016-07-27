@@ -1,5 +1,7 @@
 import { Component } from 'react'
-import { Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
+import { Grid, Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
+import SpanLink from './SpanLink'
+import { Link } from 'react-router'
 
 export default class BlogHeader extends Component {
 
@@ -8,7 +10,8 @@ export default class BlogHeader extends Component {
     <div className="demo-big-content">
     <Layout>
     <Header waterfall>
-    <HeaderRow title="Title">
+    <HeaderRow title={<SpanLink to="/home"/>}>
+    
     <Textfield
     value=""
     onChange={() => {}}
@@ -19,10 +22,9 @@ export default class BlogHeader extends Component {
     </HeaderRow>
     <HeaderRow>
     <Navigation>
-    <a href="">Link</a>
-    <a href="">Link</a>
-    <a href="">Link</a>
-    <a href="">Link</a>
+    <Link to="/home">Posts</Link>
+    <Link to="/new">New</Link>
+    <Link to="/about">About</Link>
     </Navigation>
     </HeaderRow>
     </Header>
@@ -35,7 +37,9 @@ export default class BlogHeader extends Component {
     </Navigation>
     </Drawer>
     <Content>
-      {this.props.children}
+      <Grid>
+        {this.props.children}
+      </Grid>
     </Content>
     </Layout>
     </div>

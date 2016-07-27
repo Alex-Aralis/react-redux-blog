@@ -2,7 +2,6 @@ require('script!../node_modules/react-mdl/extra/material.min.js')
 require('style!css!../node_modules/react-mdl/extra/css/material.amber-green.min.css')
 
 import { render } from 'react-dom';
-import App from './components/App';
 import './css/index.css';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -11,6 +10,7 @@ import { addPost, toggleFavorite } from './actions/actionCreators'
 import { Router, Route, hashHistory } from 'react-router'
 import Main from './components/Main'
 import Header from './components/Header'
+import PostForm from './containers/PostForm'
 
 let store = createStore(reducer)
 
@@ -33,6 +33,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={Header}>
         <Route path="/home" component={Main} />
+        <Route path="/new" component={PostForm} />
       </Route>
     </Router>
   </Provider>,
