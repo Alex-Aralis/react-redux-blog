@@ -11,7 +11,7 @@ import { Router, Route, hashHistory } from 'react-router'
 import Main from './components/Main'
 import Header from './components/Header'
 import PostForm from './containers/PostForm'
-import PostPage from './components/PostPage'
+import PostPageResolver from './containers/PostPageResolver'
 
 let store = createStore(reducer)
 
@@ -35,7 +35,7 @@ render(
       <Route path="/" component={Header}>
         <Route path="/posts" component={Main} />
         <Route path="/new" component={PostForm} />
-        <Route path="/posts/:post" component={PostPage} />
+        <Route path="/posts/:id" component={PostPageResolver} />
       </Route>
     </Router>
   </Provider>,
