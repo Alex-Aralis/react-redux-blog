@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Grid, Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
 import SpanLink from './SpanLink'
 import { Link } from 'react-router'
+import LiveSearchbox from '../containers/LiveSearchbox'
 
 export default class BlogHeader extends Component {
 
@@ -11,14 +12,7 @@ export default class BlogHeader extends Component {
     <Layout>
     <Header waterfall>
     <HeaderRow title={<SpanLink to="/home"/>}>
-    
-    <Textfield
-    value=""
-    onChange={() => {}}
-    label="Search"
-    expandable
-    expandableIcon="search"
-    />
+    <LiveSearchbox />
     </HeaderRow>
     <HeaderRow>
     <Navigation>
