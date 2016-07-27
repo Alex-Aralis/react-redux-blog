@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Grid, Cell, Layout, Header, Navigation, Content, Drawer, HeaderRow, Textfield } from 'react-mdl'
+import { Grid, Cell, Layout, Header, Navigation, Content, Drawer, HeaderRow } from 'react-mdl'
 import SpanLink from './SpanLink'
 import { Link } from 'react-router'
 import LiveSearchbox from '../containers/LiveSearchbox'

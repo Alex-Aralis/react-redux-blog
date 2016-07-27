@@ -1,5 +1,5 @@
 import { PropTypes } from 'react'
-import { Card, CardTitle, CardText, CardActions, CardMenu, Button, IconButton } from 'react-mdl'
+import { Card, CardTitle, CardText, CardActions, CardMenu, IconButton } from 'react-mdl'
 import RouterButton from '../containers/RouterButton'
 
 const PostCard = ({post:{body, title, favorited = false}, onClick}) => (
