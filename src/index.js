@@ -13,34 +13,49 @@ import Header from './components/Header'
 import PostForm from './containers/PostForm'
 import PostPageResolver from './containers/PostPageResolver'
 import thunk from 'redux-thunk'
+import { API_BASE } from './constants'
 
-let store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-  )
-// eslint-disable-next-line
-let unsubOne = store.subscribe(() => console.log(store.getState()))
-store.dispatch(addPost('title', 'body'))
-store.dispatch(addPost('tsdflkjdsflksd', 'body'))
-store.dispatch(addPost('title', 'body'))
-store.dispatch(addPost('title', 'body'))
+const startApp = (initialState = {}) => {
 
-store.dispatch(toggleFavorite(2));
-store.dispatch(toggleFavorite(1));
-store.dispatch(toggleFavorite(2));
-store.dispatch(toggleFavorite(3));
+  let store = createStore(
+      reducer,
+      initialState,
+      applyMiddleware(thunk)
+    )
+  // eslint-disable-next-line
+  let unsubOne = store.subscribe(() => console.log(store.getState()))
+  /*
+  store.dispatch(addPost('title', 'body'))
+  store.dispatch(addPost('tsdflkjdsflksd', 'body'))
+  store.dispatch(addPost('title', 'body'))
+  store.dispatch(addPost('title', 'body'))
 
-store.dispatch(toggleFavorite(3));
+  store.dispatch(toggleFavorite(2));
+  store.dispatch(toggleFavorite(1));
+  store.dispatch(toggleFavorite(2));
+  store.dispatch(toggleFavorite(3));
 
-render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={Header}>
-        <Route path="/posts" component={Main} />
-        <Route path="/new" component={PostForm} />
-        <Route path="/posts/:id" component={PostPageResolver} />
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-);
+  store.dispatch(toggleFavorite(3));
+  */
+
+  render(
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Route path="/" component={Header}>
+          <Route path="/posts" component={Main} />
+          <Route path="/new" component={PostForm} />
+          <Route path="/posts/:id" component={PostPageResolver} />
+        </Route>
+      </Router>
+    </Provider>,
+    document.getElementById('root')
+  );
+}
+
+fetch(`${API_BASE}/posts.json`)
+  .then(res => {
+    return res.json()
+  })
+  .then(json => {
+    startApp({posts: json})
+  })
