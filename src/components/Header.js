@@ -4,6 +4,7 @@ import SpanLink from './SpanLink'
 import { Link } from 'react-router'
 import LiveSearchbox from '../containers/LiveSearchbox'
 import BlogFooter from './BlogFooter'
+import LiveSnackbar from '../containers/LiveSnackbar'
 
 export default class BlogHeader extends Component {
 
@@ -42,6 +43,7 @@ export default class BlogHeader extends Component {
     </Content>
     </Layout>
     </div>
+    <LiveSnackbar />
     </div>
     )
   }

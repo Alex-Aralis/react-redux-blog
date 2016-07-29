@@ -6,7 +6,7 @@ export default class PostPage extends Component {
   render(){
     return (
       <Grid>
-        <Cell col={8} offset={2}>
+        <Cell col={8} offset={2} shadow={1} >
           <h1>
             {this.props.post.title}
           </h1>
