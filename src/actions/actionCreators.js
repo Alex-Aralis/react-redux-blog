@@ -1,4 +1,5 @@
 import { SHOW_SNACKBAR, POST_POSTED, POST_REJECTED, ADD_POST, TOGGLE_FAVORITE, UPDATE_QUERY } from './actionTypes'
+import { API_BASE } from '../constants'
 
 export const showSnackbar = snackbar => {
   return {
@@ -22,7 +23,7 @@ export const postRejected = err => {
 export const postPost = (post) => {
   console.log(post)
   return (dispatch) => {
-      return fetch('http://localhost:3030/posts.json', {
+      return fetch(`${API_BASE}/posts.json`, {
         method: 'post',
         body: JSON.stringify({post}),
         headers: {
