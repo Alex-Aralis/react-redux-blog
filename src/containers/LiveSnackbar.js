@@ -8,8 +8,8 @@ class LiveSnackbar extends Component {
     return (
       <Snackbar
         active={this.props.active}
-        onClick={this.props.snackbarClick}
-        onTimeout={this.props.snackbarTimeout}
+        onClick={this.props.handleSnackbarClick}
+        onTimeout={this.props.handleSnackbarTimeout}
         action={this.props.action}
       > 
         {this.props.content}
@@ -22,8 +22,8 @@ const mapStateToProps = ({snackbar}) => {
   console.log(snackbar)
   return {
     active: snackbar.active,
-    snackbarClick: snackbar.onClick,
-    snackbarTimeout: snackbar.onTimeout,
+    handleSnackbarClick: snackbar.onClick,
+    handleSnackbarTimeout: snackbar.onTimeout,
     action: snackbar.action,
     content: snackbar.content,
   }

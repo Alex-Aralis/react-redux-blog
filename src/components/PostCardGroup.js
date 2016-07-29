@@ -1,18 +1,25 @@
-import { PropTypes } from 'react'
+import { Component } from 'react'
 import PostCard from './PostCard'
 import { Grid } from 'react-mdl'
 
-const PostCardGroup = ({posts, onPostClick}) => (
-  <Grid>
-    {posts.map((post) => (
-      <PostCard key={post.id} post={post} onClick={() => onPostClick(post.id)} />
-    ))} 
-  </Grid>
-)
+export default class PostCardGroup extends Component {
+  componentWillMount() {
+    this.props.getPosts()
+  }
 
-PostCardGroup.propTypes = {
-  posts: PropTypes.array,
-  onPostClick: PropTypes.func.isRequired,
+  render() {
+    return <Grid>
+      {this.props.isFetching ? 
+        <h1>LOADING...</h1> 
+      : 
+        this.props.posts.map((post) => (
+          <PostCard 
+            key={post.id} 
+            post={post} 
+            onClick={() => this.props.onPostClick(post.id)} 
+          />
+        ))
+      }
+    </Grid>
+  }
 }
-
-export default PostCardGroup

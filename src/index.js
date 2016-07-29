@@ -6,14 +6,12 @@ import './css/index.css';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { addPost, toggleFavorite } from './actions/actionCreators'
 import { Router, Route, browserHistory } from 'react-router'
 import Main from './components/Main'
 import Header from './components/Header'
 import PostForm from './containers/PostForm'
 import PostPageResolver from './containers/PostPageResolver'
 import thunk from 'redux-thunk'
-import { API_BASE } from './constants'
 
 const startApp = (initialState = {}) => {
 
@@ -52,10 +50,13 @@ const startApp = (initialState = {}) => {
   );
 }
 
+startApp();
+/*
 fetch(`${API_BASE}/posts.json`)
   .then(res => {
     return res.json()
   })
   .then(json => {
-    startApp({posts: json})
+    startApp({postsState: {posts: json}})
   })
+*/

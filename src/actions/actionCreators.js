@@ -1,4 +1,4 @@
-import { SHOW_SNACKBAR, POST_POSTED, POST_REJECTED, ADD_POST, TOGGLE_FAVORITE, UPDATE_QUERY } from './actionTypes'
+import { SET_POSTS_FETCHING, LOAD_POSTS, SHOW_SNACKBAR, POST_POSTED, POST_REJECTED, ADD_POST, TOGGLE_FAVORITE, UPDATE_QUERY } from './actionTypes'
 import { API_BASE } from '../constants'
 
 export const showSnackbar = snackbar => {
@@ -35,6 +35,38 @@ export const postPost = (post) => {
         return res.json()
       })
     }
+}
+
+export const loadPosts = (posts) => {
+  return {
+    type: LOAD_POSTS,
+    posts: posts,
+  }
+}
+
+export const setPostsFetching = (isFetching) => {
+  return {
+    type: SET_POSTS_FETCHING,
+    isFetching,
+  }
+}
+
+export const getPosts = () => {
+  return dispatch => {
+    dispatch(setPostsFetching(true))
+
+    return fetch(`${API_BASE}/posts.json`)
+      .then(res => {
+        return res.json()
+      })
+      .then(json => {
+        console.log(json)
+        dispatch(loadPosts(json))
+        dispatch(setPostsFetching(false))
+
+        return json
+      })  
+  }
 }
 
 export const addPost = (title, body, favorited = false) => {

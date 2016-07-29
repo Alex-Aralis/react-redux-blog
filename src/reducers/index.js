@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import posts from './posts'
+import postsState from './postsState'
 import query from './query'
 import snackbar from './snackbar'
 
 export default combineReducers({
   snackbar,
-  posts,
+  postsState,
   query,
 });
