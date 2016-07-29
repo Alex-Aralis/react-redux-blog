@@ -1,4 +1,15 @@
-import { SET_POSTS_FETCHING, LOAD_POSTS, SHOW_SNACKBAR, POST_POSTED, POST_REJECTED, ADD_POST, TOGGLE_FAVORITE, UPDATE_QUERY } from './actionTypes'
+import { 
+  SET_POSTS_FETCHING, 
+  LOAD_POSTS, 
+  SHOW_SNACKBAR, 
+  POST_POSTED, 
+  POST_REJECTED, 
+  ADD_POST, 
+  TOGGLE_FAVORITE, 
+  UPDATE_QUERY,
+  INVALIDATE_POSTS,
+  VALIDATE_POSTS,
+} from './actionTypes'
 import { API_BASE } from '../constants'
 
 export const showSnackbar = snackbar => {
@@ -22,6 +33,7 @@ export const postRejected = err => {
 
 export const postPost = (post) => {
   console.log(post)
+
   return (dispatch) => {
       return fetch(`${API_BASE}/posts.json`, {
         method: 'post',
@@ -51,6 +63,18 @@ export const setPostsFetching = (isFetching) => {
   }
 }
 
+export const invalidatePosts = () => {
+  return {
+    type: INVALIDATE_POSTS,
+  }
+}
+
+export const validatePosts = () => {
+  return {
+    type: VALIDATE_POSTS,
+  }
+}
+
 export const getPosts = () => {
   return dispatch => {
     dispatch(setPostsFetching(true))
@@ -63,6 +87,7 @@ export const getPosts = () => {
         console.log(json)
         dispatch(loadPosts(json))
         dispatch(setPostsFetching(false))
+        dispatch(validatePosts)
 
         return json
       })  

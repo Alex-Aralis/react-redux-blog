@@ -1,16 +1,18 @@
 import { Component } from 'react'
 import PostCard from './PostCard'
-import { Grid } from 'react-mdl'
+import { Grid, Spinner } from 'react-mdl'
 
 export default class PostCardGroup extends Component {
   componentWillMount() {
-    this.props.getPosts()
+    if(this.props.didInvalidate){
+      this.props.getPosts()
+    }
   }
 
   render() {
     return <Grid>
       {this.props.isFetching ? 
-        <h1>LOADING...</h1> 
+        <Spinner style={{margin: '50px auto', width: '300px', height: '300px'}} />
       : 
         this.props.posts.map((post) => (
           <PostCard 

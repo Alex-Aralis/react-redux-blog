@@ -1,4 +1,9 @@
-import { SET_POSTS_FETCHING, LOAD_POSTS } from '../actions/actionTypes'
+import { 
+  SET_POSTS_FETCHING, 
+  LOAD_POSTS,
+  VALIDATE_POSTS,
+  INVALIDATE_POSTS,  
+} from '../actions/actionTypes'
 
 export default (postsState = {posts: [], didInvalidate: true, isFetching: false}, action) => {
   console.log('after defaults set')
@@ -38,7 +43,16 @@ export default (postsState = {posts: [], didInvalidate: true, isFetching: false}
       }else{
         return postsState
       }
-
+    case VALIDATE_POSTS:
+      return {
+        ...postsState,
+        didInvalidate: false,
+      }
+    case INVALIDATE_POSTS:
+      return {
+        ...postsState,
+        didInvalidate: true,
+      }
     default:
       console.log(
         `action type ${action.type} 

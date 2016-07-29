@@ -8,6 +8,7 @@ const mapStateToProps = ({postsState, query}) => {
   return {
     posts: postsState.posts.filter(post => (post.title.includes(query))),
     isFetching: postsState.isFetching,
+    didInvalidate: postsState.didInvalidate,
   }
 }
 
