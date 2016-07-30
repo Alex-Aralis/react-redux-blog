@@ -3,30 +3,29 @@ import {
   LOAD_POSTS,
   VALIDATE_POSTS,
   INVALIDATE_POSTS,  
+  LOAD_POST,
 } from '../actions/actionTypes'
 
-export default (postsState = {posts: [], didInvalidate: true, isFetching: false}, action) => {
+export default (
+    postsState = 
+      {
+        posts: [], 
+        fullPosts: {},
+        didInvalidate: true, 
+        isFetching: false
+      }, action) => {
   console.log('after defaults set')
   console.log(postsState)
   console.log({...postsState})
   switch (action.type) {
-    /*
-    case ADD_POST:
-      return [
-        ...posts,
-        {
-          ...action.post,
-          id: id++,
-        },
-      ]
-    case TOGGLE_FAVORITE:
-      return posts.map(post => {
-        if (post.id === action.id)
-          return {...post, favorited: !post.favorited}
-        else
-          return {...post}
-        })
-    */
+    case LOAD_POST: 
+      return {
+        ...postsState,
+        fullPosts: {
+          ...postsState.fullPosts,
+          [action.post.id]: action.post,
+        }
+      }
     case SET_POSTS_FETCHING:
       return {
         ...postsState,

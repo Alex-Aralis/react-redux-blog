@@ -9,6 +9,7 @@ import {
   UPDATE_QUERY,
   INVALIDATE_POSTS,
   VALIDATE_POSTS,
+  LOAD_POST,
 } from './actionTypes'
 import { API_BASE } from '../constants'
 
@@ -43,25 +44,6 @@ export const postRejected = err => {
   }
 }
 
-export const postPost = (post) => {
-  console.log(post)
-
-  return (dispatch) => {
-      return fetch(`${API_BASE}/posts.json`, {
-        method: 'post',
-        body: JSON.stringify({post}),
-        headers: {
-          'content-type': 'application/json',
-        }
-      })
-      .then((res) => {
-        console.log(res)
-        dispatch(invalidatePosts())
-        return res.json()
-      })
-    }
-}
-
 export const loadPosts = (posts) => {
   return {
     type: LOAD_POSTS,
@@ -69,29 +51,10 @@ export const loadPosts = (posts) => {
   }
 }
 
-export const setPostsFetching = (isFetching) => {
+export const loadPost = (post) => {
   return {
-    type: SET_POSTS_FETCHING,
-    isFetching,
-  }
-}
-
-export const getPosts = () => {
-  return dispatch => {
-    dispatch(setPostsFetching(true))
-
-    return fetch(`${API_BASE}/posts.json`)
-      .then(res => {
-        return res.json()
-      })
-      .then(json => {
-        console.log(json)
-        dispatch(loadPosts(json))
-        dispatch(setPostsFetching(false))
-        dispatch(validatePosts)
-
-        return json
-      })  
+    type: LOAD_POST,
+    post: post,
   }
 }
 
@@ -117,5 +80,59 @@ export const updateQuery = (query) => {
   return {
     type: UPDATE_QUERY,
     query,
+  }
+}
+export const setPostsFetching = (isFetching) => {
+  return {
+    type: SET_POSTS_FETCHING,
+    isFetching,
+  }
+}
+
+
+export const postPost = (post) => {
+  console.log(post)
+
+  return (dispatch) => {
+      return fetch(`${API_BASE}/posts.json`, {
+        method: 'post',
+        body: JSON.stringify({post}),
+        headers: {
+          'content-type': 'application/json',
+        }
+      })
+      .then((res) => {
+        console.log(res)
+        dispatch(invalidatePosts())
+        return res.json()
+      })
+    }
+}
+
+export const getPost = (id) => {
+  return (dispatch) => {
+    return fetch(`${API_BASE}/posts/${id}.json`)
+      .then((res) => {
+        return res.json()
+      })
+  }
+}
+
+export const getPosts = () => {
+  return dispatch => {
+    dispatch(setPostsFetching(true))
+
+    return fetch(`${API_BASE}/posts.json`)
+      .then(res => {
+        return res.json()
+      })
+      .then(json => {
+        console.log(json)
+        dispatch(loadPosts(json))
+        dispatch(setPostsFetching(false))
+        dispatch(validatePosts)
+
+        return json
+      })  
   }
 }

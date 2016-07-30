@@ -1,10 +1,18 @@
 import { connect } from 'react-redux'
 import PostPage from '../components/PostPage.js'
+import { getPost, loadPost } from '../actions/actionCreators'
 
-const mapStateToProps = ({posts}, {params: {id}}) => {
+const mapStateToProps = ({postsState: {fullPosts}}, {params: {id}}) => {
   return {
-    post: posts[id]
+    id,
+    fullPosts,
   }
 }
 
-export default connect(mapStateToProps)(PostPage)
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    getPost: (id) => dispatch(getPost(id)),
+    loadPost: (post) => dispatch(loadPost(post)),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
