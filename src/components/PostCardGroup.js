@@ -10,18 +10,27 @@ export default class PostCardGroup extends Component {
   }
 
   render() {
-    return <Grid>
-      {this.props.isFetching ? 
-        <Spinner style={{margin: '50px auto', width: '300px', height: '300px'}} />
+    return <Grid style={{opacity: this.props.isFetching ? '0.4' : '1' }}>
+    {
+      this.props.isFetching ? 
+        <Spinner style={{
+          margin: '50px auto', 
+          width: '300px', 
+          height: '300px',
+          position: 'absolute',
+          left: 'calc(50% - 150px)',
+          top: '50px',
+        }} /> 
       : 
-        this.props.posts.map((post) => (
-          <PostCard 
-            key={post.id} 
-            post={post} 
-            onClick={() => this.props.onPostClick(post.id)} 
-          />
-        ))
-      }
+        null
+    }
+      { this.props.posts.map((post) => (
+        <PostCard 
+          key={post.id} 
+          post={post} 
+          onClick={() => this.props.onPostClick(post.id)} 
+        />
+      )) }
     </Grid>
   }
 }
