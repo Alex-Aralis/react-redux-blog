@@ -84,6 +84,9 @@ module.exports = {
     return [autoprefixer];
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: indexHtmlPath,

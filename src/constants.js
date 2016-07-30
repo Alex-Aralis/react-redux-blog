@@ -1,1 +1,1 @@
-export const API_BASE = 'http://localhost:3030'
+export const API_BASE = 'https://aaralis-react-blog-backend.herokuapp.com'
