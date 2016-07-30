@@ -1,4 +1,4 @@
-import { Grid, Textfield, FABButton, Icon } from 'react-mdl'
+import { Grid, Cell, Textfield, Button } from 'react-mdl'
 import { connect } from 'react-redux'
 import { showSnackbar, postPost, postPosted, postRejected } from '../actions/actionCreators'
 
@@ -6,6 +6,11 @@ let titleRef = null;
 let bodyRef = null;
 
 let PostForm = ({dispatch}) => {
+
+  const clearForm = () => {
+    titleRef.refs.input.value = ''
+    bodyRef.refs.input.value = ''
+  }
   const onButtonClick = () => {
     dispatch(
       postPost({
@@ -15,6 +20,7 @@ let PostForm = ({dispatch}) => {
       })
     )
     .then(json => {
+      clearForm();
       dispatch(postPosted(json))
       dispatch(showSnackbar({
         action: 'Undo',
@@ -23,28 +29,51 @@ let PostForm = ({dispatch}) => {
         content: 'Post was published.',
       })
     )})
-    .catch(err => dispatch(postRejected(err)))
+    .catch(err => {
+      dispatch(postRejected(err))
+      dispatch(showSnackbar({
+        action: 'Retry',
+        onClick: () => {},
+        onTimeout: () => {},
+        content: 'Post was rejected.',
+      }))
+    })
   }
   
 
   return <Grid>
-    <Textfield
-      ref={node => {titleRef = node}}
-      label="Title"
-      floatingLabel
-      style={{width: '200px'}}
-    />
+    <Cell col={6} offsetDesktop={3} shadow={2} phone={12} offsetPhone={0}> 
+      <Grid shadow={2}>
+        <Cell col={12}>
+          <Textfield
+            ref={node => {titleRef = node}}
+            label="Title"
+            floatingLabel
+            style={{width: '100%'}}
+          />
+        </Cell>
+      </Grid>
+  
+      <Grid>
+        <Cell col={12}>
+          <Textfield
+            ref={node => {bodyRef = node} }
+            label="Body"
+            floatingLabel
+            rows={10}
+            style={{width: '100%'}}
+          />
+        </Cell>
+      </Grid>
 
-    <Textfield
-      ref={node => {bodyRef = node} }
-      label="Body"
-      rows={3}
-      style={{width: '200px'}}
-    />
-
-    <FABButton colored ripple onClick={onButtonClick}>
-      <Icon name="add" />
-    </FABButton>
+      <Grid>
+        <Cell col={12}>
+          <Button raised accent ripple onClick={onButtonClick}>
+            Submit Post
+          </Button>
+        </Cell>
+      </Grid>
+    </Cell>
  </Grid>
 }
 

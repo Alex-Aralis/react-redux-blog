@@ -12,6 +12,18 @@ import {
 } from './actionTypes'
 import { API_BASE } from '../constants'
 
+export const invalidatePosts = () => {
+  return {
+    type: INVALIDATE_POSTS,
+  }
+}
+
+export const validatePosts = () => {
+  return {
+    type: VALIDATE_POSTS,
+  }
+}
+
 export const showSnackbar = snackbar => {
   return {
     ...snackbar,
@@ -44,6 +56,7 @@ export const postPost = (post) => {
       })
       .then((res) => {
         console.log(res)
+        dispatch(invalidatePosts())
         return res.json()
       })
     }
@@ -60,18 +73,6 @@ export const setPostsFetching = (isFetching) => {
   return {
     type: SET_POSTS_FETCHING,
     isFetching,
-  }
-}
-
-export const invalidatePosts = () => {
-  return {
-    type: INVALIDATE_POSTS,
-  }
-}
-
-export const validatePosts = () => {
-  return {
-    type: VALIDATE_POSTS,
   }
 }
 
