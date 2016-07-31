@@ -1,1 +1,1 @@
-web: PORT=$PORT npm run publish
+web: PORT=$PORT npm run serve
