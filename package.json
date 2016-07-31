@@ -50,7 +50,6 @@
   },
   "scripts": {
     "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js",
-    "publish": "npm run build; http-server -p $PORT build"
+    "build": "node ./scripts/build.js"
   }
 }
