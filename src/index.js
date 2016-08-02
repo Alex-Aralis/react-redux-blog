@@ -6,7 +6,7 @@ import './css/index.css';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import Main from './components/Main'
 import Header from './components/Header'
 import PostForm from './containers/PostForm'
@@ -40,6 +40,7 @@ const startApp = (initialState = {}) => {
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={Header}>
+          <IndexRedirect to="/posts" />
           <Route path="/posts" component={Main} />
           <Route path="/new" component={PostForm} />
           <Route path="/posts/:id" component={PostPageResolver} />
